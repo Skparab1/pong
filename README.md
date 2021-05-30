@@ -6,8 +6,8 @@ Replicating the video game pong in Python, except with a one-control interface, 
   - left
   - rightup
   - leftup
-  - rightdown (needs improvement)
-  - leftdown (needs improvement)
+  - rightdown
+  - leftdown
 - printing arena with ball
 # What is to be done
 - make computer play against you
