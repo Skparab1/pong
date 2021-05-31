@@ -3,11 +3,12 @@ import time, random, shelve
 from random import randint
 movedirection = 'right'
 name = input('enter your name ')
-pos = 50
+pos = 49
+angle = 2
 def printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18):
     global p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18
     print(' '+('_'*100))
-    print('|'+line18+p18),print('|'+line17+p17),print('|'+line16+p16),print('|'+line15+p15),print('|'+line14+p14),print('|'+line13+p13),print('|'+line12+p12),print('|'+line11+p11),print('|'+line10+p10),print('|'+line9+p9),print('|'+line8+p8),print('|'+line7+p7),print('|'+line6+p16),print('|'+line5+p5),print('|'+line4+p4),print('|'+line3+p3),print('|'+line2+p2),print('|'+line1+p1)
+    print('|'+line18+p18),print('|'+line17+p17),print('|'+line16+p16),print('|'+line15+p15),print('|'+line14+p14),print('|'+line13+p13),print('|'+line12+p12),print('|'+line11+p11),print('|'+line10+p10),print('|'+line9+p9),print('|'+line8+p8),print('|'+line7+p7),print('|'+line6+p6),print('|'+line5+p5),print('|'+line4+p4),print('|'+line3+p3),print('|'+line2+p2),print('|'+line1+p1)
     print(' '+('-'*100))
 def removeball(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18):
     line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = line1.replace('o',' '),line2.replace('o',' '),line3.replace('o',' '),line4.replace('o',' '),line5.replace('o',' '),line6.replace('o',' '),line7.replace('o',' '),line8.replace('o',' '),line9.replace('o',' '),line10.replace('o',' '),line11.replace('o',' '),line12.replace('o',' '),line13.replace('o',' '),line14.replace('o',' '),line15.replace('o',' '),line16.replace('o',' '),line17.replace('o',' '),line18.replace('o',' ')
@@ -18,11 +19,9 @@ def addball(pos,line):
     line = linepart1 + 'o ' + linepart2
     return line
 def moveball(movedirection,line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18):
-    global pos
+    global pos, angle
     linenum = 1 if ('o' in line1 ) else (2 if ('o' in line2 ) else (3 if ('o' in line3 ) else (4 if ('o' in line4 ) else (5 if ('o' in line5 ) else (6 if ('o' in line6 ) else (7 if ('o' in line7 ) else (8 if ('o' in line8 ) else (9 if ('o' in line9 ) else (10 if ('o' in line10 ) else (11 if ('o' in line11 ) else (12 if ('o' in line12 ) else (13 if ('o' in line13 ) else (14 if ('o' in line14 ) else (15 if ('o' in line15 ) else (16 if ('o' in line16 ) else (17 if ('o' in line17 ) else 18))))))))))))))))
-    #lineabove = line2 if linenum == 1 else (line3 if (linenum == 2) else (line4 if (linenum == 3) else (line5 if (linenum == 4) else (line6 if (linenum == 5) else (line7 if (linenum == 6) else (line8 if (linenum == 7) else (line9 if (linenum == 8) else (line10 if (linenum == 9) else (line11 if (linenum == 10) else (line12 if (linenum == 11) else (line13 if linenum == 12 else (line14 if linenum == 13 else (line15 if linenum == 14 else (line16 if linenum == 15 else (line17 if linenum == 16 else line18)))))))))))))))
-    #lineabove = line1 if linenum == 2 else (line2 if linenum == 3 else (line3 if (linenum == 4) else (line4 if (linenum == 5) else (line5 if (linenum == 6) else (line6 if (linenum == 7) else (line7 if (linenum == 8) else (line8 if (linenum == 9) else (line9 if (linenum == 10) else (line10 if (linenum == 11) else (line11 if (linenum == 12) else (line12 if (linenum == 13) else (line13 if linenum == 14 else (line14 if linenum == 15 else (line15 if linenum == 16 else (line16 if linenum == 17 else (line17 if linenum == 18 else line18))))))))))))))))
-    numtomove = 2
+    numtomove = angle
     if movedirection == 'right':
         pos += numtomove
         line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = removeball(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
@@ -56,22 +55,33 @@ while True:
     try:
         line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = moveball(movedirection,line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
         printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
-        if pos >= 98:
-            rand = randint(1,3)
-            if rand == 1:
-                movedirection = 'leftup'
-            elif rand == 2:
-                movedirection = 'left'
+        if pos >= 97:
+            ln = 1 if ('o' in line1 ) else (2 if ('o' in line2 ) else (3 if ('o' in line3 ) else (4 if ('o' in line4 ) else (5 if ('o' in line5 ) else (6 if ('o' in line6 ) else (7 if ('o' in line7 ) else (8 if ('o' in line8 ) else (9 if ('o' in line9 ) else (10 if ('o' in line10 ) else (11 if ('o' in line11 ) else (12 if ('o' in line12 ) else (13 if ('o' in line13 ) else (14 if ('o' in line14 ) else (15 if ('o' in line15 ) else (16 if ('o' in line16 ) else (17 if ('o' in line17 ) else 18))))))))))))))))
+            if (ln == 1 and '|' in p1) or (ln == 2 and '|' in p2) or (ln == 3 and '|' in p3) or (ln == 4 and '|' in p4) or (ln == 5 and '|' in p5) or (ln == 6 and '|' in p6) or (ln == 7 and '|' in p7) or (ln == 8 and '|' in p8) or (ln == 9 and '|' in p9) or (ln == 10 and '|' in p10) or (ln == 11 and '|' in p11) or (ln == 12 and '|' in p12) or (ln == 13 and '|' in p13) or (ln == 14 and '|' in p14) or (ln == 15 and '|' in p15) or (ln == 16 and '|' in p16) or (ln == 17 and '|' in p17) or (ln == 18 and '|' in p18):
+                rand = randint(1,5)
+                if rand == 1 or rand == 2:
+                    movedirection = 'leftup'
+                    angle = randint(2,4)
+                elif rand == 3 or rand == 4:
+                    movedirection = 'left'
+                    angle = 2
+                else:
+                    movedirection = 'leftdown'
+                    angle = randint(2,4)
             else:
-                movedirection = 'leftdown'
-        if pos <= 2:
+                print('you have lost')
+                break
+        if pos <= 4:
             rand = randint(1,3)
             if rand == 1:
                 movedirection = 'rightup'
+                angle = randint(2,4)
             elif rand == 2:
                 movedirection = 'right'
+                angle = 2
             else:
                 movedirection = 'rightdown'
+                angle = randint(2,4)
         if 'o' in line1:
             if movedirection == 'leftdown':
                 movedirection = 'leftup'
@@ -88,7 +98,7 @@ while True:
         print(movedirection)
         padpos = padstorer
         if padpos > 1:
-            padpos -= 0.5
+            padpos -= 0.3
         time.sleep(0.1)
     except:
         padpos += 2
