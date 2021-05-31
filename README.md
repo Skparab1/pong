@@ -15,7 +15,8 @@ Replicating the video game pong in Python, except with a one-control interface, 
 - paddle controls
 - paddles + paddle moving
 - ball bouncing off of wall on other side
-# What is to be done
 - make computer play against you with a moving paddle
 - scoring
+# What is to be done
 - scoreboard text file storage
+- make ball movements a little more randomized
