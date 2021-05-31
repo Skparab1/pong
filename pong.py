@@ -48,39 +48,48 @@ def moveball(movedirection,line1,line2,line3,line4,line5,line6,line7,line8,line9
         line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = removeball(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
         line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = (addball(pos,line1) if linenum == 2 else line1),(addball(pos,line2) if linenum == 3 else line2),(addball(pos,line3) if linenum == 4 else line3),(addball(pos,line4) if linenum == 5 else line4),(addball(pos,line5) if linenum == 6 else line5),(addball(pos,line6) if linenum == 7 else line6),(addball(pos,line7) if linenum == 8 else line7),(addball(pos,line8) if linenum == 9 else line8),(addball(pos,line9) if linenum == 10 else line9),(addball(pos,line10) if linenum == 11 else line10),(addball(pos,line11) if linenum == 12 else line11),(addball(pos,line12) if linenum == 13 else line12),(addball(pos,line13) if linenum == 14 else line13),(addball(pos,line14) if linenum == 15 else line14),(addball(pos,line15) if linenum == 16 else line15),(addball(pos,line16) if linenum == 17 else line16),(addball(pos,line17) if linenum == 18 else line17),(addball(pos,line18) if linenum == False else line18)
     return line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18
-padpos  = 8
+padpos = 8
 p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18 = '','','','','','','','|','|','|','|','','','','','','',''
 line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = ' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,((' '*50)+'o'+(' '*49)),' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,' '*100
 printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
 while True:
-    line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = moveball(movedirection,line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
-    printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
-    if pos >= 98:
-        rand = randint(1,3)
-        if rand == 1:
-            movedirection = 'leftup'
-        elif rand == 2:
-            movedirection = 'left'
-        else:
-            movedirection = 'leftdown'
-    if pos <= 2:
-        rand = randint(1,3)
-        if rand == 1:
-            movedirection = 'rightup'
-        elif rand == 2:
-            movedirection = 'right'
-        else:
-            movedirection = 'rightdown'
-    if 'o' in line1:
-        if movedirection == 'leftdown':
-            movedirection = 'leftup'
-        if movedirection == 'rightdown':
-            movedirection = 'rightup'
-    if 'o' in line18:
-        if movedirection == 'leftup':
-            movedirection = 'leftdown'
-        if movedirection == 'rightup':
-            movedirection = 'rightdown'
-    p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18 = '','','','','','','','|','|','|','|','','','','','','','',
-    print(movedirection)
-    time.sleep(0.1)
+    try:
+        line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = moveball(movedirection,line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
+        printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
+        if pos >= 98:
+            rand = randint(1,3)
+            if rand == 1:
+                movedirection = 'leftup'
+            elif rand == 2:
+                movedirection = 'left'
+            else:
+                movedirection = 'leftdown'
+        if pos <= 2:
+            rand = randint(1,3)
+            if rand == 1:
+                movedirection = 'rightup'
+            elif rand == 2:
+                movedirection = 'right'
+            else:
+                movedirection = 'rightdown'
+        if 'o' in line1:
+            if movedirection == 'leftdown':
+                movedirection = 'leftup'
+            if movedirection == 'rightdown':
+                movedirection = 'rightup'
+        if 'o' in line18:
+            if movedirection == 'leftup':
+                movedirection = 'leftdown'
+            if movedirection == 'rightup':
+                movedirection = 'rightdown'
+        padstorer = padpos
+        padpos = round(padpos)
+        p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18 = '|' if padpos == 1 else '','|' if padpos == 1 or padpos == 2 else '','|' if padpos == 1 or padpos == 2 or padpos == 3 else '','|' if padpos == 1 or padpos == 2 or padpos == 3 or padpos == 4 else '','|' if padpos == 2 or padpos == 3 or padpos == 4 or padpos == 5 else '','|' if padpos == 3 or padpos == 4 or padpos == 5 or padpos == 6 else '','|' if padpos == 4 or padpos == 5 or padpos == 6 or padpos == 7 else '','|' if padpos == 5 or padpos == 6 or padpos == 7 or padpos == 8 else '','|' if padpos == 6 or padpos == 7 or padpos == 8 or padpos == 9 else '','|' if padpos == 7 or padpos == 8 or padpos == 9 or padpos == 10 else '','|' if padpos == 8 or padpos == 9 or padpos == 10 or padpos == 11 else '','|' if padpos == 9 or padpos == 10 or padpos == 11 or padpos == 12 else '','|' if padpos == 10 or padpos == 11 or padpos == 12 or padpos == 12 else '','|' if padpos == 11 or padpos == 12 or padpos == 13 or padpos == 14 else '','|' if padpos == 12 or padpos == 13 or padpos == 14 or padpos == 15 else '','|' if padpos == 13 or padpos == 14 or padpos == 15 or padpos == 16 else '','|' if padpos == 14 or padpos == 15 or padpos == 16 or padpos == 17 else '','|' if padpos == 15 or padpos == 16 or padpos == 17 or padpos == 18 else ''
+        print(movedirection)
+        padpos = padstorer
+        if padpos > 1:
+            padpos -= 0.5
+        time.sleep(0.1)
+    except:
+        padpos += 2
+        time.sleep(0.1)
