@@ -2,6 +2,8 @@
 import time, random, shelve
 from random import randint
 movedirection = 'right'
+print('Pong')
+print('How to play: press contol + c to move your paddle up')
 name = input('enter your name ')
 pos = 49
 angle = 2
@@ -51,11 +53,13 @@ padpos = 8
 p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18 = '','','','','','','','|','|','|','|','','','','','','',''
 line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = ' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,((' '*50)+'o'+(' '*49)),' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,' '*100,' '*100
 printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
+lost = 10
 while True:
     try:
+        time.sleep(0.1)
         line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = moveball(movedirection,line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
         printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
-        if pos >= 97:
+        if (pos >= 97 and angle > 2) or pos == 99:
             ln = 1 if ('o' in line1 ) else (2 if ('o' in line2 ) else (3 if ('o' in line3 ) else (4 if ('o' in line4 ) else (5 if ('o' in line5 ) else (6 if ('o' in line6 ) else (7 if ('o' in line7 ) else (8 if ('o' in line8 ) else (9 if ('o' in line9 ) else (10 if ('o' in line10 ) else (11 if ('o' in line11 ) else (12 if ('o' in line12 ) else (13 if ('o' in line13 ) else (14 if ('o' in line14 ) else (15 if ('o' in line15 ) else (16 if ('o' in line16 ) else (17 if ('o' in line17 ) else 18))))))))))))))))
             if (ln == 1 and '|' in p1) or (ln == 2 and '|' in p2) or (ln == 3 and '|' in p3) or (ln == 4 and '|' in p4) or (ln == 5 and '|' in p5) or (ln == 6 and '|' in p6) or (ln == 7 and '|' in p7) or (ln == 8 and '|' in p8) or (ln == 9 and '|' in p9) or (ln == 10 and '|' in p10) or (ln == 11 and '|' in p11) or (ln == 12 and '|' in p12) or (ln == 13 and '|' in p13) or (ln == 14 and '|' in p14) or (ln == 15 and '|' in p15) or (ln == 16 and '|' in p16) or (ln == 17 and '|' in p17) or (ln == 18 and '|' in p18):
                 rand = randint(1,5)
@@ -63,25 +67,24 @@ while True:
                     movedirection = 'leftup'
                     angle = randint(2,4)
                 elif rand == 3 or rand == 4:
-                    movedirection = 'left'
-                    angle = 2
-                else:
                     movedirection = 'leftdown'
                     angle = randint(2,4)
+                else:
+                    movedirection = 'left'
+                    angle = 3
             else:
-                print('you have lost')
-                break
+                lost = 0
         if pos <= 4:
-            rand = randint(1,3)
-            if rand == 1:
+            rand = randint(1,5)
+            if rand == 1 or rand == 2:
                 movedirection = 'rightup'
                 angle = randint(2,4)
-            elif rand == 2:
-                movedirection = 'right'
-                angle = 2
-            else:
+            elif rand == 3 or rand == 4:
                 movedirection = 'rightdown'
                 angle = randint(2,4)
+            else:
+                movedirection = 'right'
+                angle = 3
         if 'o' in line1:
             if movedirection == 'leftdown':
                 movedirection = 'leftup'
@@ -92,6 +95,10 @@ while True:
                 movedirection = 'leftdown'
             if movedirection == 'rightup':
                 movedirection = 'rightdown'
+        lost += 1
+        if lost == 5:
+            print('you have lost')
+            break
         padstorer = padpos
         padpos = round(padpos)
         p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18 = '|' if padpos == 1 else '','|' if padpos == 1 or padpos == 2 else '','|' if padpos == 1 or padpos == 2 or padpos == 3 else '','|' if padpos == 1 or padpos == 2 or padpos == 3 or padpos == 4 else '','|' if padpos == 2 or padpos == 3 or padpos == 4 or padpos == 5 else '','|' if padpos == 3 or padpos == 4 or padpos == 5 or padpos == 6 else '','|' if padpos == 4 or padpos == 5 or padpos == 6 or padpos == 7 else '','|' if padpos == 5 or padpos == 6 or padpos == 7 or padpos == 8 else '','|' if padpos == 6 or padpos == 7 or padpos == 8 or padpos == 9 else '','|' if padpos == 7 or padpos == 8 or padpos == 9 or padpos == 10 else '','|' if padpos == 8 or padpos == 9 or padpos == 10 or padpos == 11 else '','|' if padpos == 9 or padpos == 10 or padpos == 11 or padpos == 12 else '','|' if padpos == 10 or padpos == 11 or padpos == 12 or padpos == 12 else '','|' if padpos == 11 or padpos == 12 or padpos == 13 or padpos == 14 else '','|' if padpos == 12 or padpos == 13 or padpos == 14 or padpos == 15 else '','|' if padpos == 13 or padpos == 14 or padpos == 15 or padpos == 16 else '','|' if padpos == 14 or padpos == 15 or padpos == 16 or padpos == 17 else '','|' if padpos == 15 or padpos == 16 or padpos == 17 or padpos == 18 else ''
@@ -99,7 +106,6 @@ while True:
         padpos = padstorer
         if padpos > 1:
             padpos -= 0.3
-        time.sleep(0.1)
     except:
         padpos += 2
         time.sleep(0.1)
