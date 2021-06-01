@@ -1,6 +1,6 @@
 #pong
 import time, random, shelve
-from random import randint
+from random import randint, randrange
 movedirection = 'right'
 print('Pong')
 print('How to play: press contol + c to move your paddle up')
@@ -8,6 +8,7 @@ name = input('enter your name ')
 pos = 49
 angle = 2
 score = 0
+waittime = 0.1
 def printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18):
     global p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18
     print(' '+('_'*100))
@@ -59,10 +60,10 @@ printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,l
 lost = 10
 while True:
     try:
-        time.sleep(0.1)
+        time.sleep(waittime)
         line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18 = moveball(movedirection,line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
         printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18)
-        if (pos >= 97 and angle > 2) or pos == 99:
+        if (pos >= 98 and angle > 2) or pos == 99:
             ln = 1 if ('o' in line1 ) else (2 if ('o' in line2 ) else (3 if ('o' in line3 ) else (4 if ('o' in line4 ) else (5 if ('o' in line5 ) else (6 if ('o' in line6 ) else (7 if ('o' in line7 ) else (8 if ('o' in line8 ) else (9 if ('o' in line9 ) else (10 if ('o' in line10 ) else (11 if ('o' in line11 ) else (12 if ('o' in line12 ) else (13 if ('o' in line13 ) else (14 if ('o' in line14 ) else (15 if ('o' in line15 ) else (16 if ('o' in line16 ) else (17 if ('o' in line17 ) else 18))))))))))))))))
             if (ln == 1 and '|' in p1) or (ln == 2 and '|' in p2) or (ln == 3 and '|' in p3) or (ln == 4 and '|' in p4) or (ln == 5 and '|' in p5) or (ln == 6 and '|' in p6) or (ln == 7 and '|' in p7) or (ln == 8 and '|' in p8) or (ln == 9 and '|' in p9) or (ln == 10 and '|' in p10) or (ln == 11 and '|' in p11) or (ln == 12 and '|' in p12) or (ln == 13 and '|' in p13) or (ln == 14 and '|' in p14) or (ln == 15 and '|' in p15) or (ln == 16 and '|' in p16) or (ln == 17 and '|' in p17) or (ln == 18 and '|' in p18):
                 rand = randint(1,7)
@@ -106,7 +107,7 @@ while True:
         linein = 1 if ('o' in line1 ) else (1 if ('o' in line2 ) else (2 if ('o' in line3 ) else (2 if ('o' in line4 ) else (3 if ('o' in line5 ) else (4 if ('o' in line6 ) else (5 if ('o' in line7 ) else (6 if ('o' in line8 ) else (7 if ('o' in line9 ) else (8 if ('o' in line10 ) else (9 if ('o' in line11 ) else (10 if ('o' in line12 ) else (11 if ('o' in line13 ) else (12 if ('o' in line14 ) else (13 if ('o' in line15 ) else (14 if ('o' in line16 ) else (15 if ('o' in line17 ) else 16))))))))))))))))
         padstorer = padpos
         padpos = round(padpos)
-        if ((pos <= 25 and angle >= 23) or pos <= 20) and (movedirection == 'left' or movedirection == 'leftup' or movedirection == 'leftdown'):
+        if ((pos <= 30 and angle >= 3) or (pos <= 25 and angle == 2) or pos <= 20) and (movedirection == 'left' or movedirection == 'leftup' or movedirection == 'leftdown'):
             if spos > linein:
                 spos -= 1
             if spos < linein:
@@ -120,5 +121,4 @@ while True:
     except:
         if padpos <= 18:
             padpos += 2
-        time.sleep(0.1)
 print('your score was ',score)
