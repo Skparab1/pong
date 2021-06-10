@@ -12,8 +12,12 @@ pos = 49
 angle = 2
 score = 0
 waittime = 0.1
+midlinealt = 1
 def addmidline(line):
-    return line[:49] + '|' + line[50:]
+    global midlinealt
+    midln = '|' if midlinealt == 1 else '|'
+    midlinealt = 1 if midlinealt == 0 else 0
+    return line[:49] + midln + line[50:]
 def printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18):
     global p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18, name
     print('\n'*50),print('Pypong Pro (computer)'+(' '*70)+name),print(' '+('_'*100))
@@ -127,7 +131,7 @@ while True:
             padpos = apos
         p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18 = '|' if padpos == 1  or padpos == 2 else '','|' if padpos == 1 or padpos == 2 or padpos == 3 else '','|' if padpos == 1 or padpos == 2 or padpos == 3  or padpos == 4 else '','|' if padpos == 1 or padpos == 2 or padpos == 3 or padpos == 4 or padpos == 5 else '','|' if padpos == 2 or padpos == 3 or padpos == 4 or padpos == 5 or padpos == 6 else '','|' if padpos == 3 or padpos == 4 or padpos == 5 or padpos == 6  or padpos == 7 else '','|' if padpos == 4 or padpos == 5 or padpos == 6 or padpos == 7  or padpos == 8 else '','|' if padpos == 5 or padpos == 6 or padpos == 7 or padpos == 8  or padpos == 9 else '','|' if padpos == 6 or padpos == 7 or padpos == 8 or padpos == 9  or padpos == 10 else '','|' if padpos == 7 or padpos == 8 or padpos == 9 or padpos == 10  or padpos == 11 else '','|' if padpos == 8 or padpos == 9 or padpos == 10 or padpos == 11 or padpos == 12 else '','|' if padpos == 9 or padpos == 10 or padpos == 11 or padpos == 12  or padpos == 13 else '','|' if padpos == 10 or padpos == 11 or padpos == 12 or padpos == 13 or padpos == 14 else '','|' if padpos == 11 or padpos == 12 or padpos == 13 or padpos == 14 or padpos == 15 else '','|' if padpos == 12 or padpos == 13 or padpos == 14 or padpos == 15  or padpos == 16 else '','|' if padpos == 13 or padpos == 14 or padpos == 15 or padpos == 16  or padpos == 17 else '','|' if padpos == 14 or padpos == 15 or padpos == 16 or padpos == 17  or padpos == 18 else '','|' if padpos == 14 or padpos == 15 or padpos == 16 or padpos == 17 or padpos == 18 else ''
         print('Score: ',score,'    ',movedirection)
-        if padpos > 1 and autoplay == False:
+        if padpos > 2 and autoplay == False:
             padpos = padstorer
             padpos -= 0.3
     except:
