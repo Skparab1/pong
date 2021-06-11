@@ -1,5 +1,5 @@
 # Pong
-Replicating the video game pong in Python, except with a one-control interface, like flappy bird. the user's paddle will automatically move down, and the user can press control+c to move it up. Works very well, inculding automated computer paddle moving. Autoplay mode is now active! For entertainment, type autoplay as the name and watch the computer play against itself.
+Replicating the video game pong in Python, except with a one-control interface, like flappy bird. the user's paddle will automatically move down, and the user can press control+c to move it up. Works very well, inculding automated computer paddle moving. Autoplay mode is now active! For entertainment, type autoplay as the name and watch the computer play against itself. Original pong game can be played at ponggame.org.
 # Pong demo
 ![](pong_demo_3.gif)
 # Pong autoplay demo
