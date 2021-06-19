@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run test
-        run: |
+        run: python pong.py
           echo "hello"
           echo "edit this part to change your run commands"
           echo "you should have a test mode in your program that doesn't forever"
