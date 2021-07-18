@@ -183,7 +183,7 @@ while True:
         # if autoplay is not on, then move the paddle down slightly
         if padpos > 2 and autoplay == False:
             padpos = padstorer
-            padpos -= 0.3
+            padpos -= 0.5
 
     except: # if user presses control + c
        if padpos <= 13 and autoplay == False: # if paddle is not at max height and autoplay is not enabled
