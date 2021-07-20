@@ -28,7 +28,7 @@ def addmidline(line):
 # printing the game arena
 def printarena(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12,line13,line14,line15,line16,line17,line18):
     global p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18, name
-    print('\n'*50),print('Pypong Pro (computer)'+(' '*70)+name),print(' '+('_'*100))
+    print('\n'*50),print('Pypong Pro (computer) '+(' '*69)+name),print(' '+('_'*100))
     print(s18+addmidline(line18)+p18),print(s17+addmidline(line17)+p17),print(s16+addmidline(line16)+p16),print(s15+addmidline(line15)+p15),print(s14+addmidline(line14)+p14),print(s13+addmidline(line13)+p13),print(s12+addmidline(line12)+p12),print(s11+addmidline(line11)+p11),print(s10+addmidline(line10)+p10),print(s9+addmidline(line9)+p9),print(s8+addmidline(line8)+p8),print(s7+addmidline(line7)+p7),print(s6+addmidline(line6)+p6),print(s5+addmidline(line5)+p5),print(s4+addmidline(line4)+p4),print(s3+addmidline(line3)+p3),print(s2+addmidline(line2)+p2),print(s1+addmidline(line1)+p1)
     print(' '+('-'*100))
 
