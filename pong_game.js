@@ -15,6 +15,7 @@ var ball_y = 500;
 var ball_speed = 7;
 
 var ball_direction = 'right';
+var paddlepos = 500;
 
 function animate_ball(){
   if (ball_direction == 'right'){
@@ -58,7 +59,7 @@ function animate_ball(){
   }  
   
   if (ball_x >= 1885){
-    if (ball_y <= mouseY+100 && ball_y >= mouseY-100){
+    if (ball_y <= paddlepos+100 && ball_y >= paddlepos-100){
         random_direction = Math.floor(Math.random() * 10);
         if (random_direction <= 4){
            ball_direction = 'leftdown';
@@ -101,15 +102,26 @@ function draw() {
   print(ball_y);
   print(ball_speed);
   
-  to_print = 'Hits: ' + player_scores[0] + '       Misses: ' + player_scores[1];
+  if (keyIsDown(DOWN_ARROW)) {
+    paddlepos += 5;
+  }
+
+  if (keyIsDown(UP_ARROW)) {
+    paddlepos -= 5;
+  }
+  
+  to_print = 'Hits: ' + player_scores[0] + '       Misses: ' + player_scores[1] + '       Score: ' + (player_scores[0]-player_scores[1]);
+  textSize(35);
   
   text(to_print,990,100);
   
   fill(50,50,50);
-  rect(1900,mouseY-100,15,200);
+  rect(1900,paddlepos-100,15,200);
   rect(100,ball_y-100,15,200);
   ellipse(ball_x,ball_y,50,50);
   setTimeout(animate_ball, 1000);
-  
+}
 
+function mouseMoved(){
+  paddlepos = mouseY;
 }
